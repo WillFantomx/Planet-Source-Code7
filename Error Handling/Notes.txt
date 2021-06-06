@@ -1,0 +1,47 @@
+
+Reusable component : Error Handling VB6
+Amod Gokhale         2-Aug-2005
+
+
+This module will be used in error handling for VB application. 
+This application will log an error log and send an email notification.
+
+
+Modules to be included in client project : 
+1. FrmErrorMsg.frm
+2. moduleGlobal.bas
+
+
+
+Working of errormsg : 
+
+If each method add below code..
+On Error GoTo ErrorHandler
+	--
+	--
+	--
+	--
+	Exit Sub/function
+ErrorHandler:
+    Call frmErrorMsg.SetErrorLog(Err.Number, Err.Description, "Command1_Click", "frmDemo")
+    frmErrorMsg.Show vbModal
+    End
+
+Where command1_Click is method name and frmdemo is form name.
+
+
+So a log file is created with this log and a custom form is shown. 
+Please modify form as per requirement.
+
+
+If user clicks on send Error Report. Error log is send to default emailaddress. So change email address first before sending mail.
+Also you can either automatically send email without knowing user about it. Just pass first parameter to method SendMessage as "false"
+
+Another alternative to this is sending data on site. for e.g. www.yoursite.com/submit.aspx?... etc.
+
+
+
+Please feel free to send suggestions and comments for this module at amod_go@yahoo.com
+
+
+Amod Gokhale
